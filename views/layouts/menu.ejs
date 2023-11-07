@@ -1,0 +1,28 @@
+<nav class="navbar is-black">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">Início</a>
+    <% if (user && user.role === 'user') { %>
+      <a class="navbar-item" href="/pedidos/<%= user.id %>">Pedidos</a>
+      <a class="navbar-item" href="/produtos">Produtos</a>
+    <% } else if (user && user.role === 'admin') { %>
+      <a class="navbar-item" href="/pedidos">Pedidos</a>
+      <a class="navbar-item" href="/produtos">Produtos</a>
+    <a class="navbar-item" href="/pessoas">Pessoas</a>
+    <% } %>
+  </div>
+  <div class="navbar-brand" style="margin-left: auto;">
+    <% if (user) { %>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">Bem-vindo, <%= user.nome %></a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="/pessoas/<%= user.id %>">Meu perfil</a>
+          <a class="navbar-item" href="/logout">Logout</a>
+        </div>
+      </div>
+    <% } else { %>
+      <a class="navbar-item" href="/pessoas/novo">Cadastrar Usuário</a>
+      <a class="navbar-item" href="/form-login">Login</a>
+    <% } %>
+  </div>
+</nav>
+
